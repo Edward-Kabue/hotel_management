@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:hotel/core/theme/app_theme.dart';
 
 void main() => runApp(const Hotel());
 
@@ -9,12 +8,11 @@ class Hotel extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Hotel Card',
-      theme: AppTheme.themeData,
+      theme: ThemeData(primarySwatch: Colors.blue),
       home: const MyHomePage(title: 'Hotel Page'),
     );
   }
 }
-
 
 class MyHomePage extends StatelessWidget {
   final String title;
