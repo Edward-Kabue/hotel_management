@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hotel/features/authentication/screens/login_screen.dart';
 
 void main() => runApp(const Hotel());
 
@@ -9,7 +10,11 @@ class Hotel extends StatelessWidget {
     return MaterialApp(
       title: 'Hotel Card',
       theme: ThemeData(primarySwatch: Colors.blue),
-      home: const MyHomePage(title: 'Hotel Page'),
+      home: const LoginScreen(), // Set LoginScreen as the home page
+      routes: {
+        '/home': (context) => const MyHomePage(title: 'Hotel Page'),
+        '/login': (context) => const LoginScreen(),
+      },
     );
   }
 }
