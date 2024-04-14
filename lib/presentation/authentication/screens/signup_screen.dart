@@ -1,14 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:hotel/presentation/authentication/widgets/logo.dart';
 import 'package:provider/provider.dart';
 import 'package:hotel/providers/auth_provider.dart';
 
-class LoginScreen extends StatefulWidget {
-  const LoginScreen({super.key});
+class SignupScreen extends StatefulWidget {
+  const SignupScreen({super.key});
   @override
-  State<LoginScreen> createState() => _CreateUserScreenState();
+  State<SignupScreen> createState() => _CreateUserScreenState();
 }
 
-class _CreateUserScreenState extends State<LoginScreen> {
+class _CreateUserScreenState extends State<SignupScreen> {
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
 
@@ -23,12 +24,13 @@ class _CreateUserScreenState extends State<LoginScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Create User'),
+        title: const Text('Sign Up'),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
           children: [
+            const LogoWidget(),
             TextField(
               controller: _emailController,
               decoration: const InputDecoration(
@@ -51,7 +53,7 @@ class _CreateUserScreenState extends State<LoginScreen> {
                       password,
                     );
               },
-              child: const Text('Create User'),
+              child: const Text('Sign Up'),
             ),
           ],
         ),

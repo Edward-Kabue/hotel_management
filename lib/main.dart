@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:hotel/presentation/authentication/screens/login_screen.dart';
+import 'package:hotel/presentation/authentication/screens/signup_screen.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
 import 'package:provider/provider.dart';
@@ -25,10 +25,10 @@ class Hotel extends StatelessWidget {
     return MaterialApp(
       title: 'Hotel Card',
       theme: ThemeData(primarySwatch: Colors.blue),
-      home: const LoginScreen(), // Set LoginScreen as the home page
+      home: const SignupScreen(), // Set LoginScreen as the home page
       routes: {
         '/home': (context) => const MyHomePage(title: 'Hotel Page'),
-        '/login': (context) => const LoginScreen(),
+        '/signup': (context) => const SignupScreen(),
       },
     );
   }
@@ -49,9 +49,9 @@ class MyHomePage extends StatelessWidget {
           const Text('Hotel Booking Card'),
           ElevatedButton(
             onPressed: () {
-              Navigator.pushNamed(context, '/login');
+              Navigator.pushNamed(context, '/signup');
             },
-            child: const Text('Login'),
+            child: const Text('Signup'),
           ),
         ],
       ),
