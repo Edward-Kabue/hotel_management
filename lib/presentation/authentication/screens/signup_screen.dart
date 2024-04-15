@@ -1,15 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:hotel/presentation/authentication/screens/profile_screen.dart';
 import 'package:hotel/presentation/authentication/widgets/logo.dart';
 import 'package:provider/provider.dart';
 import 'package:hotel/providers/auth_provider.dart';
 
-class SignupScreen extends StatefulWidget {
-  const SignupScreen({super.key});
+class SignUpScreen extends StatefulWidget {
+  const SignUpScreen({super.key});
   @override
-  State<SignupScreen> createState() => _CreateUserScreenState();
+  State<SignUpScreen> createState() => _CreateUserScreenState();
 }
 
-class _CreateUserScreenState extends State<SignupScreen> {
+class _CreateUserScreenState extends State<SignUpScreen> {
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
 
@@ -31,13 +32,14 @@ class _CreateUserScreenState extends State<SignupScreen> {
         child: Column(
           children: [
             const LogoWidget(),
-            TextField(
+            TextFormField(
               controller: _emailController,
               decoration: const InputDecoration(
                 labelText: 'Email',
               ),
             ),
-            TextField(
+            const SizedBox(height: 16),
+            TextFormField(
               controller: _passwordController,
               decoration: const InputDecoration(
                 labelText: 'Password',
@@ -52,6 +54,10 @@ class _CreateUserScreenState extends State<SignupScreen> {
                       email,
                       password,
                     );
+                Navigator.pushReplacement(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const ProfileScreen()));
               },
               child: const Text('Sign Up'),
             ),

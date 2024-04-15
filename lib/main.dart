@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:hotel/presentation/authentication/screens/signup_screen.dart';
+import 'package:hotel/presentation/authentication/screens/signUp_screen.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:hotel/presentation/home/home_screen.dart';
+import 'core/theme/theme.dart';
 import 'firebase_options.dart';
 import 'package:provider/provider.dart';
 import 'package:hotel/providers/auth_provider.dart';
@@ -23,38 +25,14 @@ class Hotel extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'Hotel Card',
-      theme: ThemeData(primarySwatch: Colors.blue),
-      home: const SignupScreen(), // Set LoginScreen as the home page
+      theme: AppTheme.theme,
+      home: const MyHomePage(title: 'Hotel Page'),
       routes: {
         '/home': (context) => const MyHomePage(title: 'Hotel Page'),
-        '/signup': (context) => const SignupScreen(),
+        '/signUp': (context) => const SignUpScreen(),
       },
-    );
-  }
-}
-
-class MyHomePage extends StatelessWidget {
-  final String title;
-
-  const MyHomePage({required this.title, super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: Text(title)),
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: <Widget>[
-          const Text('Hotel Booking Card'),
-          ElevatedButton(
-            onPressed: () {
-              Navigator.pushNamed(context, '/signup');
-            },
-            child: const Text('Signup'),
-          ),
-        ],
-      ),
     );
   }
 }
