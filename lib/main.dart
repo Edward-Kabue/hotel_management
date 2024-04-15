@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:hotel/presentation/authentication/screens/signUp_screen.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:hotel/presentation/home/home_screen.dart';
+import 'package:hotel/presentation/onboarding/onboarding_screen.dart';
 import 'core/theme/theme.dart';
 import 'firebase_options.dart';
 import 'package:provider/provider.dart';
@@ -35,10 +36,10 @@ class Hotel extends StatelessWidget {
       title: 'Hotel Card',
       theme: AppTheme.theme,
       //if user is not logged in redirect to login page
-      home: authProvider.isLoggedIn
-          ? const MyHomePage(title: 'Hotel Page')
-          : const SignUpScreen(),
+      home: const OnboardingScreen(),
+
       routes: {
+        '/onboarding': (context) => const OnboardingScreen(),
         '/home': (context) => const MyHomePage(title: 'Hotel Page'),
         '/signUp': (context) => const SignUpScreen(),
         '/profile': (context) => const ProfileScreen(),
