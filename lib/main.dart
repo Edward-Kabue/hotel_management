@@ -35,9 +35,43 @@ class Hotel extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Hotel Card',
       theme: AppTheme.theme,
-      //if user is not logged in redirect to login page
-      home: const OnboardingScreen(),
-
+      home: authProvider.isLoggedIn
+          ? const ProfileScreen()
+          : const OnboardingScreen(),
+      //if user is logged in redirect to home page
+      /// Generates the appropriate route based on the provided [settings].
+      ///
+      /// The [settings] parameter contains information about the requested route,
+      /// such as the route name. This function uses a switch statement to determine
+      /// which route to generate and returns a [MaterialPageRoute] with the
+      /// corresponding builder.
+      ///
+      /// If the route name is '/login', it returns a [MaterialPageRoute] with the
+      /// [LoginScreen] as the builder. If the route name is '/signUp', it returns
+      /// a [MaterialPageRoute] with the [SignUpScreen] as the builder. If the route
+      /// name is '/profile', it returns a [MaterialPageRoute] with the [ProfileScreen]
+      /// as the builder. For any other route name, it returns a [MaterialPageRoute]
+      /// with the [MyHomePage] as the builder, with the title set to 'Hotel Page'.
+      onGenerateRoute: (RouteSettings settings) {
+        switch (settings.name) {
+          case '/login':
+            return MaterialPageRoute(
+              builder: (context) => const LoginScreen(),
+            );
+          case '/signUp':
+            return MaterialPageRoute(
+              builder: (context) => const SignUpScreen(),
+            );
+          case '/profile':
+            return MaterialPageRoute(
+              builder: (context) => const ProfileScreen(),
+            );
+          default:
+            return MaterialPageRoute(
+              builder: (context) => const MyHomePage(title: 'Hotel Page'),
+            );
+        }
+      },
       routes: {
         '/onboarding': (context) => const OnboardingScreen(),
         '/home': (context) => const MyHomePage(title: 'Hotel Page'),

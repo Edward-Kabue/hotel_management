@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:hotel/core/size/lib/size_config.dart';
 import 'package:hotel/domain/models/onboarding_model.dart';
 
+/// The screen that displays the onboarding process.
 class OnboardingScreen extends StatefulWidget {
   const OnboardingScreen({super.key});
 
@@ -25,6 +26,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
     Color(0xffDCF6E6),
   ];
 
+  /// Builds the dots indicator for the current page.
   AnimatedContainer _buildDots({
     int? index,
   }) {
@@ -45,6 +47,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
 
   @override
   Widget build(BuildContext context) {
+    /// Initializes the [SizeConfig] and assigns the screen width and height to the variables [width] and [height].
     SizeConfig().init(context);
     double width = SizeConfig.screenW!;
     double height = SizeConfig.screenH!;
@@ -56,6 +59,30 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
           children: [
             Expanded(
               flex: 3,
+
+              /// Creates a widget that displays a series of pages in a scrollable container.
+              ///
+              /// The [PageView.builder] widget is used to create a scrollable container that displays a series of pages.
+              /// It takes a [PageController] to control the scrolling behavior and a [PageBuilder] to build each page.
+              /// The [child] parameter is used to specify the widget that will be displayed as the content of each page.
+              ///
+              /// Example usage:
+              /// ```dart
+              /// PageView.builder(
+              ///   controller: _pageController,
+              ///   itemBuilder: (context, index) {
+              ///     return Container(
+              ///       child: Text('Page $index'),
+              ///     );
+              ///   },
+              ///   itemCount: 3,
+              /// )
+              /// ```
+              ///
+              /// See also:
+              ///  - [PageView], a widget that displays a series of pages in a scrollable container.
+              ///  - [PageController], a controller for [PageView] that controls the scrolling behavior.
+              ///  - [PageBuilder], a function that builds a page for [PageView.builder].
               child: PageView.builder(
                 physics: const BouncingScrollPhysics(),
                 controller: _controller,

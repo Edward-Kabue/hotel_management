@@ -14,18 +14,16 @@ List<OnboardingModel> contents = [
   OnboardingModel(
     title: "Your dream vacation is waiting for you",
     image: "assets/images/image1.png",
-    desc: "Remember to keep track of your professional accomplishments.",
+    desc: "Your dream vacation is waiting for you.",
   ),
   OnboardingModel(
     title: "Your dream vacation is waiting for you",
     image: "assets/images/ob1.png",
-    desc:
-        "But understanding the contributions our colleagues make to our teams and companies.",
+    desc: "Your dream vacation is waiting for you.",
   ),
   OnboardingModel(
     title: "Your dream vacation is waiting for you",
     image: "assets/images/ob3.png",
-    desc:
-        "Take control of notifications, collaborate live or on your own time.",
+    desc: "Your dream vacation is waiting for you.",
   ),
 ];

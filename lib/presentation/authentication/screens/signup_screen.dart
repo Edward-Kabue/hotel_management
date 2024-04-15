@@ -2,7 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:hotel/presentation/authentication/widgets/logo.dart';
-import 'package:hotel/presentation/home/profile_screen.dart';
+//import 'package:hotel/presentation/home/profile_screen.dart';
 import 'package:provider/provider.dart';
 import 'package:hotel/providers/auth_provider.dart';
 
