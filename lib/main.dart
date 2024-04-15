@@ -3,6 +3,7 @@ import 'package:hotel/presentation/authentication/screens/signUp_screen.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:hotel/presentation/home/home_screen.dart';
 import 'package:hotel/presentation/onboarding/onboarding_screen.dart';
+import 'package:hotel/providers/navigation_provider.dart';
 import 'core/theme/theme.dart';
 import 'firebase_options.dart';
 import 'package:provider/provider.dart';
@@ -17,8 +18,12 @@ Future<void> main() async {
   );
 
   runApp(
-    ChangeNotifierProvider(
-      create: (context) => AuthProvider(),
+    MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (_) => AuthProvider()),
+        ChangeNotifierProvider(create: (_) => NavigationProvider()),
+        // Add more providers here if needed
+      ],
       child: const Hotel(),
     ),
   );
