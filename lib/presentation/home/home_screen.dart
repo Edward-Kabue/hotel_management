@@ -18,12 +18,23 @@ class MyHomePage extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
             const Text('Hotel Booking Card'),
-            ElevatedButton(
-              onPressed: () {
-                Navigator.pushNamed(context, '/signUp');
-              },
-              child: const Text('Sign up'),
-            ),
+            Row(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  ElevatedButton(
+                    onPressed: () {
+                      Navigator.pushNamed(context, '/login');
+                    },
+                    child: const Text('Login'),
+                  ),
+                  ElevatedButton(
+                    onPressed: () {
+                      Navigator.pushNamed(context, '/signUp');
+                    },
+                    child: const Text('Sign up'),
+                  ),
+                ]),
           ],
         ),
       ),

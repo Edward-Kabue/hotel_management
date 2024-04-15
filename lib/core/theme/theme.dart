@@ -44,9 +44,8 @@ class AppTheme {
     style: elevatedButtonStyle,
   );
   //add the app bar theme
-  static const AppBarTheme appBarTheme = AppBarTheme(
-    color: primaryColor,
-  );
+  static const AppBarTheme appBarTheme =
+      AppBarTheme(color: primaryColor, centerTitle: true);
   static ThemeData get theme => ThemeData(
         primaryColor: primaryColor,
         textTheme: const TextTheme(

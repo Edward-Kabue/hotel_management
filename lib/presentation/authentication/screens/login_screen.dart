@@ -6,13 +6,13 @@ import 'package:hotel/presentation/home/profile_screen.dart';
 import 'package:provider/provider.dart';
 import 'package:hotel/providers/auth_provider.dart';
 
-class SignUpScreen extends StatefulWidget {
-  const SignUpScreen({super.key});
+class LoginScreen extends StatefulWidget {
+  const LoginScreen({super.key});
   @override
-  State<SignUpScreen> createState() => _CreateUserScreenState();
+  State<LoginScreen> createState() => _CreateUserScreenState();
 }
 
-class _CreateUserScreenState extends State<SignUpScreen> {
+class _CreateUserScreenState extends State<LoginScreen> {
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
 
@@ -27,7 +27,7 @@ class _CreateUserScreenState extends State<SignUpScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Sign Up'),
+        title: const Text('Login'),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -55,7 +55,7 @@ class _CreateUserScreenState extends State<SignUpScreen> {
                 // Pass the current context to the AuthProvider
                 await context
                     .read<AuthProvider>()
-                    .createUserWithEmailAndPassword(context, email, password);
+                    .signInWithEmailAndPassword(context, email, password);
                 // Check if the user is created successfully
                 if (context.read<AuthProvider>().user != null) {
                   Navigator.pushReplacement(
@@ -64,7 +64,7 @@ class _CreateUserScreenState extends State<SignUpScreen> {
                           builder: (context) => const ProfileScreen()));
                 }
               },
-              child: const Text('Sign Up'),
+              child: const Text('Login'),
             ),
           ],
         ),
