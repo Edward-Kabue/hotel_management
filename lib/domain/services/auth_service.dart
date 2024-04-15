@@ -67,7 +67,7 @@ class AuthService {
         default:
           errorMessage = 'An error occurred while signing in.';
       }
-      // ignore: use_build_context_synchronously
+
       AwesomeDialog(
         context: context,
         dialogType: DialogType.info,
