@@ -58,10 +58,11 @@ class _CreateUserScreenState extends State<SignUpScreen> {
                     .createUserWithEmailAndPassword(context, email, password);
                 // Check if the user is created successfully
                 if (context.read<AuthProvider>().user != null) {
-                  Navigator.pushReplacement(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => const ProfileScreen()));
+                  // Navigator.pushReplacement(
+                  //     context,
+                  //     MaterialPageRoute(
+                  //         builder: (context) => const ProfileScreen()));
+                  Navigator.pushNamed(context, '/profile');
                 }
               },
               child: const Text('Sign Up'),
