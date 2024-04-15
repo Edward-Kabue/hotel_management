@@ -1,15 +1,20 @@
 import 'package:flutter/material.dart';
-import 'package:hotel/presentation/authentication/screens/login_screen.dart';
+import 'package:hotel/presentation/authentication/screens/signUp_screen.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:hotel/presentation/home/home_screen.dart';
+import 'core/theme/theme.dart';
 import 'firebase_options.dart';
 import 'package:provider/provider.dart';
 import 'package:hotel/providers/auth_provider.dart';
+import 'presentation/authentication/screens/login_screen.dart';
+import 'presentation/home/profile_screen.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
+
   runApp(
     ChangeNotifierProvider(
       create: (context) => AuthProvider(),
@@ -20,41 +25,25 @@ Future<void> main() async {
 
 class Hotel extends StatelessWidget {
   const Hotel({super.key});
+
   @override
   Widget build(BuildContext context) {
+    final authProvider = Provider.of<AuthProvider>(context);
+
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'Hotel Card',
-      theme: ThemeData(primarySwatch: Colors.blue),
-      home: const LoginScreen(), // Set LoginScreen as the home page
+      theme: AppTheme.theme,
+      //if user is not logged in redirect to login page
+      home: authProvider.isLoggedIn
+          ? const MyHomePage(title: 'Hotel Page')
+          : const SignUpScreen(),
       routes: {
         '/home': (context) => const MyHomePage(title: 'Hotel Page'),
+        '/signUp': (context) => const SignUpScreen(),
+        '/profile': (context) => const ProfileScreen(),
         '/login': (context) => const LoginScreen(),
       },
-    );
-  }
-}
-
-class MyHomePage extends StatelessWidget {
-  final String title;
-
-  const MyHomePage({required this.title, super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: Text(title)),
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: <Widget>[
-          const Text('Hotel Booking Card'),
-          ElevatedButton(
-            onPressed: () {
-              Navigator.pushNamed(context, '/login');
-            },
-            child: const Text('Login'),
-          ),
-        ],
-      ),
     );
   }
 }
