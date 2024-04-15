@@ -47,17 +47,20 @@ class _CreateUserScreenState extends State<SignUpScreen> {
               obscureText: true,
             ),
             ElevatedButton(
-              onPressed: () {
+              onPressed: () async {
                 String email = _emailController.text.trim();
                 String password = _passwordController.text.trim();
-                context.read<AuthProvider>().createUserWithEmailAndPassword(
-                      email,
-                      password,
-                    );
-                Navigator.pushReplacement(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => const ProfileScreen()));
+                // Pass the current context to the AuthProvider
+                await context
+                    .read<AuthProvider>()
+                    .createUserWithEmailAndPassword(context, email, password);
+                // Check if the user is created successfully
+                if (context.read<AuthProvider>().user != null) {
+                  Navigator.pushReplacement(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const ProfileScreen()));
+                }
               },
               child: const Text('Sign Up'),
             ),

@@ -1,49 +1,6 @@
 import 'package:flutter/material.dart';
 
 class AppTheme {
-  static ThemeData get theme => ThemeData(
-        primaryColor: primaryColor,
-        textTheme: const TextTheme(
-          displayLarge: AppTheme.bodyText1,
-          displayMedium: AppTheme.bodyText2,
-        ),
-        appBarTheme: appBarTheme,
-        elevatedButtonTheme: elevatedButtonTheme,
-        inputDecorationTheme: InputDecorationTheme(
-          border: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(8),
-          ),
-        ),
-        textButtonTheme: TextButtonThemeData(
-          style: ButtonStyle(
-            foregroundColor: MaterialStateProperty.all(primaryColor),
-          ),
-        ),
-        outlinedButtonTheme: OutlinedButtonThemeData(
-          style: ButtonStyle(
-            foregroundColor: MaterialStateProperty.all(primaryColor),
-            overlayColor:
-                MaterialStateProperty.all(primaryColor.withOpacity(0.1)),
-          ),
-        ),
-        cardTheme: CardTheme(
-          elevation: 4,
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(8),
-          ),
-        ),
-        dividerTheme: DividerThemeData(
-          thickness: 1,
-          color: Colors.grey[300],
-        ),
-        bottomNavigationBarTheme: const BottomNavigationBarThemeData(
-          selectedItemColor: primaryColor,
-          unselectedItemColor: Colors.grey,
-        ),
-        floatingActionButtonTheme: const FloatingActionButtonThemeData(
-          backgroundColor: primaryColor,
-        ),
-      );
   static const Color primaryColor = Color(0xFF1E91B6);
   static const Color secondaryColor = Colors.green;
 
@@ -90,4 +47,47 @@ class AppTheme {
   static const AppBarTheme appBarTheme = AppBarTheme(
     color: primaryColor,
   );
+  static ThemeData get theme => ThemeData(
+        primaryColor: primaryColor,
+        textTheme: const TextTheme(
+          displayLarge: AppTheme.bodyText1,
+          displayMedium: AppTheme.bodyText2,
+        ),
+        appBarTheme: appBarTheme,
+        elevatedButtonTheme: elevatedButtonTheme,
+        inputDecorationTheme: InputDecorationTheme(
+          border: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(8),
+          ),
+        ),
+        textButtonTheme: TextButtonThemeData(
+          style: ButtonStyle(
+            foregroundColor: MaterialStateProperty.all(primaryColor),
+          ),
+        ),
+        outlinedButtonTheme: OutlinedButtonThemeData(
+          style: ButtonStyle(
+            foregroundColor: MaterialStateProperty.all(primaryColor),
+            overlayColor:
+                MaterialStateProperty.all(primaryColor.withOpacity(0.1)),
+          ),
+        ),
+        cardTheme: CardTheme(
+          elevation: 4,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(8),
+          ),
+        ),
+        dividerTheme: DividerThemeData(
+          thickness: 1,
+          color: Colors.grey[300],
+        ),
+        bottomNavigationBarTheme: const BottomNavigationBarThemeData(
+          selectedItemColor: primaryColor,
+          unselectedItemColor: Colors.grey,
+        ),
+        floatingActionButtonTheme: const FloatingActionButtonThemeData(
+          backgroundColor: primaryColor,
+        ),
+      );
 }

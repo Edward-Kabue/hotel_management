@@ -6,6 +6,7 @@ import 'core/theme/theme.dart';
 import 'firebase_options.dart';
 import 'package:provider/provider.dart';
 import 'package:hotel/providers/auth_provider.dart';
+import 'presentation/authentication/screens/profile_screen.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -32,6 +33,7 @@ class Hotel extends StatelessWidget {
       routes: {
         '/home': (context) => const MyHomePage(title: 'Hotel Page'),
         '/signUp': (context) => const SignUpScreen(),
+        '/profile': (context) => const ProfileScreen(),
       },
     );
   }
