@@ -11,6 +11,7 @@ class ProfileScreen extends StatelessWidget {
     final UserModel? user = authProvider.user;
     return Scaffold(
       appBar: AppBar(
+        automaticallyImplyLeading: false,
         title: const Text('Profile'),
       ),
       body: Center(
