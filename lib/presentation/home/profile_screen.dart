@@ -51,7 +51,7 @@ class ProfileScreen extends StatelessWidget {
               const SizedBox(
                 height: 5,
               ),
-              TextWidget(
+              const TextWidget(
                 text: 'Email@email.com',
                 color: Colors.cyan,
                 textSize: 18,
@@ -116,7 +116,7 @@ class ProfileScreen extends StatelessWidget {
         // isTitle: true,
       ),
       subtitle: TextWidget(
-        text: subtitle == null ? "" : subtitle,
+        text: subtitle ?? "",
         color: color,
         textSize: 18,
       ),
