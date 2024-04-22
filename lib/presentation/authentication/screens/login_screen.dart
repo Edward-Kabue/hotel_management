@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:hotel/presentation/authentication/widgets/logo.dart';
+import 'package:hotel/presentation/home/widgets/bottom_nav.dart';
 //import 'package:hotel/presentation/home/profile_screen.dart';
 import 'package:provider/provider.dart';
 import 'package:hotel/providers/auth_provider.dart';
@@ -58,11 +59,8 @@ class _CreateUserScreenState extends State<LoginScreen> {
                     .signInWithEmailAndPassword(context, email, password);
                 // Check if the user is created successfully
                 if (context.read<AuthProvider>().user != null) {
-                  // Navigator.pushReplacement(
-                  //     context,
-                  //     MaterialPageRoute(
-                  //         builder: (context) => const ProfileScreen()));
-                  Navigator.pushNamed(context, '/profile');
+                  Navigator.pushReplacement(context,
+                      MaterialPageRoute(builder: (context) => BottomBar()));
                 }
               },
               child: const Text('Login'),
