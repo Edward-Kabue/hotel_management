@@ -13,6 +13,7 @@ class ProfileScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final authProvider = Provider.of<AuthProvider>(context, listen: true);
     final UserModel? user = authProvider.user;
+    //debugPrint('${user!.email} is the user\'s name from the profile screen');
     return Scaffold(
       appBar: AppBar(
         title: const Text('Profile'),
@@ -35,7 +36,7 @@ class ProfileScreen extends StatelessWidget {
                   ),
                   children: <TextSpan>[
                     TextSpan(
-                        text: user!.email,
+                        text: user!.displayName,
                         style: const TextStyle(
                           color: Colors.cyan,
                           fontSize: 25,
@@ -51,8 +52,8 @@ class ProfileScreen extends StatelessWidget {
               const SizedBox(
                 height: 5,
               ),
-              const TextWidget(
-                text: 'Email@email.com',
+              TextWidget(
+                text: user.email,
                 color: Colors.cyan,
                 textSize: 18,
                 // isTitle: true,
