@@ -42,14 +42,12 @@ class Hotel extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Hotel Card',
       theme: AppTheme.theme,
-      home: authProvider.isLoggedIn
-          ? BottomBar()
-          : const MyHomePage(title: 'Hotel Page'),
+      home: authProvider.isLoggedIn ? BottomBar() : const SignUpScreen(),
       //if user is logged in redirect to home page
 
       routes: {
         '/onboarding': (context) => const OnboardingScreen(),
-        '/home': (context) => const MyHomePage(title: 'Hotel Page'),
+        '/home': (context) => MyHomePage(title: 'Hotel Page'),
         '/signUp': (context) => const SignUpScreen(),
         '/profile': (context) => const ProfileScreen(),
         '/login': (context) => const LoginScreen(),

@@ -21,6 +21,7 @@ class _CreateUserScreenState extends State<SignUpScreen> {
   void dispose() {
     _emailController.dispose();
     _passwordController.dispose();
+    _displayNameController.dispose();
     super.dispose();
   }
 
@@ -72,6 +73,13 @@ class _CreateUserScreenState extends State<SignUpScreen> {
                 }
               },
               child: const Text('Sign Up'),
+            ),
+            //add a button to navigate to the login screen
+            TextButton(
+              onPressed: () {
+                Navigator.pushReplacementNamed(context, '/login');
+              },
+              child: const Text('Already have an account? Login'),
             ),
           ],
         ),

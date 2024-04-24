@@ -8,7 +8,7 @@ import 'package:provider/provider.dart';
 class BottomBar extends StatelessWidget {
   BottomBar({super.key});
   final List<Widget> currentTab = [
-    const MyHomePage(title: 'Hotel Page'),
+    MyHomePage(title: 'Hotel Page'),
     const SearchScreen(),
     const ProfileScreen(),
   ];
