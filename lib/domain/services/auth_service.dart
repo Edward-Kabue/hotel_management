@@ -1,5 +1,6 @@
 // ignore_for_file: use_build_context_synchronously
 
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:hotel/domain/models/user_model.dart';
 import 'package:awesome_dialog/awesome_dialog.dart';
@@ -7,10 +8,11 @@ import 'package:flutter/material.dart';
 
 class AuthService {
   final FirebaseAuth _auth = FirebaseAuth.instance;
+  final FirebaseFirestore _firestore = FirebaseFirestore.instance;
 
   // Create user with email and password
-  Future<UserModel?> createUserWithEmailAndPassword(
-      BuildContext context, String email, String password) async {
+  Future<UserModel?> createUserWithEmailAndPassword(BuildContext context,
+      String email, String password, String displayName) async {
     try {
       UserCredential userCredential =
           await _auth.createUserWithEmailAndPassword(
@@ -18,7 +20,26 @@ class AuthService {
         password: password,
       );
       User? user = userCredential.user;
-      return UserModel(uid: user?.uid, email: user?.email);
+      //debugPrint('user: $user');
+      final userModel = UserModel(
+        uid: userCredential.user!.uid,
+        email: userCredential.user!.email ?? '',
+        displayName: displayName,
+      );
+      // Create a new user document in Firestore
+      try {
+        await _firestore
+            .collection('users')
+            .doc(user!.uid)
+            .set(userModel.toJson());
+        debugPrint('done');
+      } catch (e) {
+        // Handle Firestore error
+        debugPrint('Error creating user document: $e');
+        rethrow;
+      }
+      return UserModel(
+          uid: user.uid, email: user.email ?? '', displayName: displayName);
     } on FirebaseAuthException catch (e) {
       // Handle specific FirebaseAuthException errors
       String errorMessage = '';
@@ -53,7 +74,11 @@ class AuthService {
         password: password,
       );
       User? user = userCredential.user;
-      return UserModel(uid: user?.uid, email: user?.email);
+      return UserModel(
+        uid: user?.uid ?? '',
+        email: user?.email ?? '',
+        displayName: '',
+      );
     } on FirebaseAuthException catch (e) {
       // Handle specific FirebaseAuthException errors
       String errorMessage = '';
