@@ -39,7 +39,10 @@ class AuthService {
         rethrow;
       }
       return UserModel(
-          uid: user.uid, email: user.email ?? '', displayName: displayName);
+        uid: user.uid,
+        email: user.email ?? '',
+        displayName: displayName,
+      );
     } on FirebaseAuthException catch (e) {
       // Handle specific FirebaseAuthException errors
       String errorMessage = '';
@@ -70,14 +73,18 @@ class AuthService {
       BuildContext context, String email, String password) async {
     try {
       UserCredential userCredential = await _auth.signInWithEmailAndPassword(
-        email: email,
-        password: password,
-      );
+          email: email, password: password);
+
       User? user = userCredential.user;
+      String uid = user?.uid ?? '';
+      String userEmail = user?.email ?? '';
+      String displayName = user?.displayName ?? '';
+
+      // Regular user flow
       return UserModel(
-        uid: user?.uid ?? '',
-        email: user?.email ?? '',
-        displayName: '',
+        uid: uid,
+        email: userEmail,
+        displayName: displayName,
       );
     } on FirebaseAuthException catch (e) {
       // Handle specific FirebaseAuthException errors
@@ -92,7 +99,6 @@ class AuthService {
         default:
           errorMessage = 'An error occurred while signing in.';
       }
-
       AwesomeDialog(
         context: context,
         dialogType: DialogType.info,

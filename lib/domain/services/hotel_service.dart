@@ -30,8 +30,8 @@ class HotelService {
   }
 
   //delete a hotel from the Firestore database by passing the hotel id
-  Future<void> deleteHotel(String hotelId) async {
-    await _firestore.collection('hotels').doc(hotelId).delete();
+  Future<void> deleteHotel(hotel) async {
+    await _firestore.collection('hotels').doc(hotel.id.toString()).delete();
   }
 
 //set the hotels in the Firestore database by passing a list of hotels

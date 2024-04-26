@@ -2,39 +2,26 @@ import 'package:flutter/material.dart';
 import 'package:hotel/presentation/home/hotel_rooms_screen.dart';
 import 'package:provider/provider.dart';
 
+import '../../domain/models/user_model.dart';
 import '../../providers/hotel_provider.dart';
 
-class MyHomePage extends StatefulWidget {
+class MyHomePage extends StatelessWidget {
   final String title;
+  final UserModel? user;
 
-  const MyHomePage({required this.title, super.key});
-
-  @override
-  State<MyHomePage> createState() => _MyHomePageState();
-}
-
-class _MyHomePageState extends State<MyHomePage> {
-  late HotelProvider _hotelProvider;
-
-  @override
-  void initState() {
-    super.initState();
-    _hotelProvider = HotelProvider();
-    _hotelProvider.fetchHotels();
-  }
+  const MyHomePage({required this.title, super.key, this.user});
 
   @override
   Widget build(BuildContext context) {
-    return ChangeNotifierProvider.value(
-      value: _hotelProvider,
+    return ChangeNotifierProvider(
+      //
+      create: (_) => HotelProvider()..fetchHotels(),
       child: Scaffold(
         appBar: AppBar(
           automaticallyImplyLeading: false,
-          title: Text(widget.title),
+          title: Text(title),
           centerTitle: true,
         ),
-        // Display a loading spinner while fetching hotels
-        //use the consumer widget to listen to changes in the hotel provider
         body: Consumer<HotelProvider>(
           builder: (context, provider, child) {
             if (provider.hotels.isEmpty) {
@@ -54,7 +41,6 @@ class _MyHomePageState extends State<MyHomePage> {
                 final hotel = provider.hotels[index];
                 return GestureDetector(
                   onTap: () {
-                    // Navigate to the room details screen
                     Navigator.push(
                       context,
                       MaterialPageRoute(
