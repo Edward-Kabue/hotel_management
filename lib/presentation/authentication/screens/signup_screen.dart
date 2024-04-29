@@ -13,6 +13,7 @@ class SignUpScreen extends StatefulWidget {
 }
 
 class _CreateUserScreenState extends State<SignUpScreen> {
+  final _formKey = GlobalKey<FormState>();
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
   final _displayNameController = TextEditingController();
@@ -21,6 +22,7 @@ class _CreateUserScreenState extends State<SignUpScreen> {
   void dispose() {
     _emailController.dispose();
     _passwordController.dispose();
+    _displayNameController.dispose();
     super.dispose();
   }
 
@@ -30,48 +32,101 @@ class _CreateUserScreenState extends State<SignUpScreen> {
       appBar: AppBar(
         title: const Text('Sign Up'),
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(16.0),
+      body: SingleChildScrollView(
         child: Column(
           children: [
-            const LogoWidget(),
-            TextFormField(
-              controller: _displayNameController,
-              decoration: const InputDecoration(
-                labelText: 'displayName',
+            Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: Form(
+                key: _formKey,
+                child: Column(
+                  children: [
+                    const LogoWidget(),
+                    TextFormField(
+                      controller: _displayNameController,
+                      validator: (value) {
+                        if (value == null || value.isEmpty) {
+                          return 'Please enter your full name';
+                        }
+                        return null;
+                      },
+                      decoration: const InputDecoration(
+                        hintText: "Full Name",
+                        labelText: 'Full Name',
+                        prefixIcon: Icon(Icons.person,
+                            color: Color(0xff000000), size: 24),
+                      ),
+                    ),
+                    const SizedBox(height: 16),
+                    TextFormField(
+                      controller: _emailController,
+                      validator: (value) {
+                        if (value == null || value.isEmpty) {
+                          return 'Please enter your email';
+                        }
+
+                        return null;
+                      },
+                      decoration: const InputDecoration(
+                        hintText: "Email",
+                        labelText: 'Email',
+                        prefixIcon: Icon(Icons.mail,
+                            color: Color(0xff000000), size: 24),
+                      ),
+                    ),
+                    const SizedBox(height: 16),
+                    TextFormField(
+                      controller: _passwordController,
+                      validator: (value) {
+                        if (value == null || value.isEmpty) {
+                          return 'Please enter your password';
+                        }
+                        // Add more complex validation if needed
+                        return null;
+                      },
+                      decoration: const InputDecoration(
+                        hintText: "Password",
+                        labelText: 'Password',
+                        prefixIcon: Icon(Icons.visibility_off,
+                            color: Color(0xff000000), size: 24),
+                      ),
+                      obscureText: true,
+                    ),
+                    ElevatedButton(
+                      onPressed: () async {
+                        if (!_formKey.currentState!.validate()) {
+                          return;
+                        } else {
+                          String email = _emailController.text.trim();
+                          String password = _passwordController.text.trim();
+                          String displayName =
+                              _displayNameController.text.trim();
+                          // Pass the current context to the AuthProvider
+                          await context
+                              .read<AuthProvider>()
+                              .createUserWithEmailAndPassword(
+                                  context, email, password, displayName);
+                          // Check if the user is created successfully
+                          if (context.read<AuthProvider>().user != null) {
+                            Navigator.pushReplacement(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => BottomBar()));
+                          }
+                        }
+                      },
+                      child: const Text('Sign Up'),
+                    ),
+                    //add a button to navigate to the login screen
+                    TextButton(
+                      onPressed: () {
+                        Navigator.pushReplacementNamed(context, '/login');
+                      },
+                      child: const Text('Already have an account? Login'),
+                    ),
+                  ],
+                ),
               ),
-            ),
-            TextFormField(
-              controller: _emailController,
-              decoration: const InputDecoration(
-                labelText: 'Email',
-              ),
-            ),
-            const SizedBox(height: 16),
-            TextFormField(
-              controller: _passwordController,
-              decoration: const InputDecoration(
-                labelText: 'Password',
-              ),
-              obscureText: true,
-            ),
-            ElevatedButton(
-              onPressed: () async {
-                String email = _emailController.text.trim();
-                String password = _passwordController.text.trim();
-                String displayName = _displayNameController.text.trim();
-                // Pass the current context to the AuthProvider
-                await context
-                    .read<AuthProvider>()
-                    .createUserWithEmailAndPassword(
-                        context, email, password, displayName);
-                // Check if the user is created successfully
-                if (context.read<AuthProvider>().user != null) {
-                  Navigator.pushReplacement(context,
-                      MaterialPageRoute(builder: (context) => BottomBar()));
-                }
-              },
-              child: const Text('Sign Up'),
             ),
           ],
         ),
