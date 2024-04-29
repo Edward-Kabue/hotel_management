@@ -1,7 +1,7 @@
 import 'package:hotel/domain/models/room_model.dart';
 
 class Hotel {
-  final int id;
+  final int? id;
   final String name;
   final String location;
   final double rating;
@@ -9,7 +9,7 @@ class Hotel {
   final List<Room> rooms;
 
   Hotel({
-    required this.id,
+    this.id,
     required this.name,
     required this.location,
     required this.rating,
