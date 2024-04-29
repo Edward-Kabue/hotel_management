@@ -4,7 +4,7 @@ import 'package:provider/provider.dart';
 import '../../domain/models/hotel_model.dart';
 import '../../domain/models/room_model.dart';
 import '../../providers/hotel_provider.dart';
-import 'home_screen.dart';
+import '../home/home_screen.dart';
 
 class AddHotelScreen extends StatefulWidget {
   const AddHotelScreen({super.key});
@@ -19,6 +19,14 @@ class _AddHotelScreenState extends State<AddHotelScreen> {
   final imageUrlController = TextEditingController();
   double rating = 0.0;
   List<Room> rooms = [];
+
+  @override
+  void dispose() {
+    nameController.dispose();
+    locationController.dispose();
+    imageUrlController.dispose();
+    super.dispose();
+  }
 
   // New room form variables
   final _roomformKey = GlobalKey<FormState>();
@@ -36,6 +44,7 @@ class _AddHotelScreenState extends State<AddHotelScreen> {
         isRoomAvailable = true;
       });
     }
+    Navigator.pop(context);
   }
 
   @override
@@ -143,8 +152,9 @@ class _AddHotelScreenState extends State<AddHotelScreen> {
                               height: 30.0,
                             ),
                             TextFormField(
-                              decoration: const InputDecoration(
+                              decoration: InputDecoration(
                                 labelText: 'Rate',
+                                hintText: roomRate.toString(),
                               ),
                               keyboardType: TextInputType.number,
                               controller: TextEditingController(

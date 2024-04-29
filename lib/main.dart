@@ -12,7 +12,8 @@ import 'package:provider/provider.dart';
 import 'package:hotel/providers/auth_provider.dart';
 import 'presentation/authentication/screens/admin_screen.dart';
 import 'presentation/authentication/screens/login_screen.dart';
-import 'presentation/home/add_hotels_screen.dart';
+import 'presentation/dashboard/add_hotels_screen.dart';
+import 'presentation/dashboard/widgets/bottom_nav.dart';
 import 'presentation/home/profile_screen.dart';
 import 'providers/admin_provider.dart';
 
@@ -58,6 +59,7 @@ class Hotel extends StatelessWidget {
         '/login': (context) => const LoginScreen(),
         '/admin': (context) => AdminScreen(),
         '/addHotels': (context) => const AddHotelScreen(),
+        '/bottomNav': (context) => const BottomNavAdmin(),
       },
     );
   }
