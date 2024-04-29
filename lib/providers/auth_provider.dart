@@ -41,4 +41,12 @@ class AuthProvider extends ChangeNotifier {
       notifyListeners();
     }
   }
+
+  Future signOut(BuildContext context) async {
+    await _authService.signOut(context);
+    // ignore: use_build_context_synchronously
+    Navigator.pushNamedAndRemoveUntil(context, '/login', (route) => false);
+    _isLoggedIn = false;
+    notifyListeners();
+  }
 }

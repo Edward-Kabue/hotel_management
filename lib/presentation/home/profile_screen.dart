@@ -92,7 +92,9 @@ class ProfileScreen extends StatelessWidget {
               _listTiles(
                 title: 'Logout',
                 icon: IconlyLight.logout,
-                onPressed: () {},
+                onPressed: () {
+                  authProvider.signOut(context);
+                },
                 color: Colors.cyan,
               ),
             ],

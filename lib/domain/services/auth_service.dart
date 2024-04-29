@@ -104,4 +104,15 @@ class AuthService {
       return null;
     }
   }
+
+  //sign out
+  Future<UserModel?> signOut(BuildContext context) async {
+    try {
+      await _auth.signOut();
+      return null;
+    } catch (e) {
+      debugPrint('Error signing out: $e');
+      rethrow;
+    }
+  }
 }
