@@ -1,14 +1,18 @@
+enum UserRole { admin, user }
+
 class UserModel {
   String uid;
   String email;
   String displayName;
   String? photoURL;
+ 
 
   UserModel({
     required this.uid,
     required this.email,
     required this.displayName,
     this.photoURL,
+   
   });
 //serialize data to JSON
   Map<String, dynamic> toJson() {
@@ -17,6 +21,7 @@ class UserModel {
       'email': email,
       'displayName': displayName,
       'photoURL': photoURL,
+    
     };
   }
 
@@ -27,6 +32,7 @@ class UserModel {
       email: json['email'],
       displayName: json['displayName'],
       photoURL: json['photoURL'],
+  
     );
   }
 }

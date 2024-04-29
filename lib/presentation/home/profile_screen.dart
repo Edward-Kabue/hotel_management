@@ -7,6 +7,9 @@ import 'package:flutter_iconly/flutter_iconly.dart';
 
 import 'package:hotel/domain/models/user_model.dart';
 
+import '../../data/dummy_user.dart';
+import '../../domain/services/admin_service.dart';
+
 class ProfileScreen extends StatelessWidget {
   const ProfileScreen({super.key});
   @override
@@ -68,7 +71,9 @@ class ProfileScreen extends StatelessWidget {
                 title: 'Address 2',
                 subtitle: 'My subtitle',
                 icon: IconlyLight.profile,
-                onPressed: () {},
+                onPressed: () {
+                  AdminService().setAdmin(dummyUser);
+                },
                 color: Colors.cyan,
               ),
               _listTiles(
@@ -84,7 +89,7 @@ class ProfileScreen extends StatelessWidget {
                 color: Colors.cyan,
               ),
               _listTiles(
-                title: 'Forget password',
+                title: 'Change Password',
                 icon: IconlyLight.unlock,
                 onPressed: () {},
                 color: Colors.cyan,

@@ -2,33 +2,20 @@
 
 import 'package:flutter/material.dart';
 import 'package:hotel/presentation/authentication/widgets/logo.dart';
-import 'package:hotel/presentation/home/widgets/bottom_nav.dart';
-//import 'package:hotel/presentation/home/profile_screen.dart';
 import 'package:provider/provider.dart';
-import 'package:hotel/providers/auth_provider.dart';
 
-class LoginScreen extends StatefulWidget {
-  const LoginScreen({super.key});
-  @override
-  State<LoginScreen> createState() => _CreateUserScreenState();
-}
+import '../../../providers/admin_provider.dart';
 
-class _CreateUserScreenState extends State<LoginScreen> {
+class AdminScreen extends StatelessWidget {
+  AdminScreen({super.key});
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
-
-  @override
-  void dispose() {
-    _emailController.dispose();
-    _passwordController.dispose();
-    super.dispose();
-  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Login'),
+        title: const Text('Admin'),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -53,23 +40,14 @@ class _CreateUserScreenState extends State<LoginScreen> {
               onPressed: () async {
                 String email = _emailController.text.trim();
                 String password = _passwordController.text.trim();
-                // Pass the current context to the AuthProvider
+                // Pass the current context to the AdminProvider
                 await context
-                    .read<AuthProvider>()
+                    .read<AdminProvider>()
                     .signInWithEmailAndPassword(context, email, password);
                 // Check if the user is created successfully
-                if (context.read<AuthProvider>().user != null) {
-                  Navigator.pushReplacement(context,
-                      MaterialPageRoute(builder: (context) => BottomBar()));
-                }
+                Navigator.pushNamed(context, '/addHotels');
               },
               child: const Text('Login'),
-            ),
-            TextButton(
-              onPressed: () {
-                Navigator.pushNamed(context, '/admin');
-              },
-              child: const Text('Login as admin'),
             ),
           ],
         ),
