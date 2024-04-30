@@ -6,3 +6,5 @@
 **/dgph
 **/xcuserdata/
 /runner/GoogleService-Info.plist
+/runner/GoogleService-Info.plist.lock
+firebase_app_id_file.json

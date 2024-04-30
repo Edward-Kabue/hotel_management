@@ -28,6 +28,7 @@ class _AddHotelScreenState extends State<AddHotelScreen> {
     super.dispose();
   }
 
+  // New room form variables
   final _roomformKey = GlobalKey<FormState>();
   final type = TextEditingController();
   double roomRate = 0.0;
