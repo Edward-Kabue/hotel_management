@@ -28,7 +28,6 @@ class _AddHotelScreenState extends State<AddHotelScreen> {
     super.dispose();
   }
 
-  // New room form variables
   final _roomformKey = GlobalKey<FormState>();
   final type = TextEditingController();
   double roomRate = 0.0;
@@ -124,7 +123,6 @@ class _AddHotelScreenState extends State<AddHotelScreen> {
                 height: 10.0,
               ),
 
-              // Button to add a room (This requires separate implementation for Room class)
               ElevatedButton(
                 onPressed: () => showDialog(
                   context: context,
@@ -196,7 +194,6 @@ class _AddHotelScreenState extends State<AddHotelScreen> {
                 child: const Text('Add Room'),
               ),
 
-              // Display list of rooms (Requires implementation for rooms list display)
               const Text('Rooms:'),
               ListView.builder(
                 shrinkWrap: true,
