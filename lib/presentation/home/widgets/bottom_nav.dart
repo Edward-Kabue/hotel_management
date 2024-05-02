@@ -13,7 +13,7 @@ class BottomBar extends StatelessWidget {
     super.key,
   });
   final List<Widget> currentTab = [
-    const MyHomePage(title: 'Hotel Page'),
+    MyHomePage(title: 'Hotel Page'),
     const SearchScreen(),
     const ProfileScreen(),
     const AddHotelScreen(),

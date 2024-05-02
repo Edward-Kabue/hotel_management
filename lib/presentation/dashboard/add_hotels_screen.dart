@@ -231,7 +231,7 @@ class _AddHotelScreenState extends State<AddHotelScreen> {
                         context,
                         MaterialPageRoute(
                             builder: (context) =>
-                                const MyHomePage(title: 'Hotel Page')));
+                                MyHomePage(title: 'Hotel Page')));
                   }
                 },
                 child: const Text('Submit'),

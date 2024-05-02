@@ -53,7 +53,7 @@ class Hotel extends StatelessWidget {
       home: authProvider.isLoggedIn ? BottomBar() : const SignUpScreen(),
       routes: {
         '/onboarding': (context) => const OnboardingScreen(),
-        '/home': (context) => const MyHomePage(title: 'Hotel Page'),
+        '/home': (context) => MyHomePage(title: 'Hotel Page'),
         '/signUp': (context) => const SignUpScreen(),
         '/profile': (context) => const ProfileScreen(),
         '/login': (context) => const LoginScreen(),
