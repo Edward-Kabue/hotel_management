@@ -14,21 +14,48 @@ class RoomDetailsScreen extends StatelessWidget {
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              'Room Type: ${room.type}',
-              style:
-                  const TextStyle(fontSize: 18.0, fontWeight: FontWeight.bold),
+        child: SizedBox(
+          width: double.infinity,
+          child: Card(
+            elevation: 10.0,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(10.0),
             ),
-            const SizedBox(height: 8.0),
-            Text('Rate: \$${room.rate.toStringAsFixed(2)}'),
-            const SizedBox(height: 8.0),
-            Text(
-                'Availability: ${room.isAvailable ? 'Available' : 'Not Available'}'),
-            // Add more details about the room here
-          ],
+            color: Colors.blueAccent,
+            child: Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisSize: MainAxisSize
+                    .min, // This will make the Card fit its content vertically
+                children: [
+                  Text(
+                    'Room Type: ${room.type}',
+                    style: const TextStyle(
+                      fontSize: 18.0,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  const SizedBox(height: 8.0),
+                  Text('Rate: \$${room.rate.toStringAsFixed(2)}'),
+                  const SizedBox(height: 8.0),
+                  Text(
+                    'Availability: ${room.isAvailable ? 'Available' : 'Not Available'}',
+                  ),
+                  const SizedBox(height: 16.0),
+                  ElevatedButton(
+                    onPressed: room.isAvailable
+                        ? () {
+                            // Handle "Book Now" button press
+                          }
+                        : null,
+                    child: const Text('Book Now'),
+                  ),
+                  // Add more details about the room here
+                ],
+              ),
+            ),
+          ),
         ),
       ),
     );
