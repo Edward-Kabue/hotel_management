@@ -29,7 +29,8 @@ class HotelRoomsScreen extends StatelessWidget {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => RoomDetailsScreen(room: room),
+                  builder: (context) =>
+                      RoomDetailsScreen(hotel: hotel, room: room),
                 ),
               );
             },

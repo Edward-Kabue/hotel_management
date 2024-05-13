@@ -1,10 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:hotel/domain/models/room_model.dart';
 
+import '../../domain/models/hotel_model.dart';
+import 'booking_screen.dart';
+
 class RoomDetailsScreen extends StatelessWidget {
   final Room room;
+  final Hotel hotel;
 
-  const RoomDetailsScreen({super.key, required this.room});
+  const RoomDetailsScreen({
+    super.key,
+    required this.room,
+    required this.hotel,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -26,8 +34,7 @@ class RoomDetailsScreen extends StatelessWidget {
               padding: const EdgeInsets.all(16.0),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
-                mainAxisSize: MainAxisSize
-                    .min, // This will make the Card fit its content vertically
+                mainAxisSize: MainAxisSize.min,
                 children: [
                   Text(
                     'Room Type: ${room.type}',
@@ -46,12 +53,18 @@ class RoomDetailsScreen extends StatelessWidget {
                   ElevatedButton(
                     onPressed: room.isAvailable
                         ? () {
-                            // Handle "Book Now" button press
+                            // Navigate to the HotelBookingScreen with the selected room
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) =>
+                                    BookingScreen(hotel: hotel, room: room),
+                              ),
+                            );
                           }
                         : null,
                     child: const Text('Book Now'),
                   ),
-                  // Add more details about the room here
                 ],
               ),
             ),

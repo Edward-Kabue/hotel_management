@@ -6,7 +6,6 @@ import 'package:hotel/providers/navigation_provider.dart';
 import 'package:provider/provider.dart';
 
 import '../../../providers/hotel_provider.dart';
-import '../../dashboard/add_hotels_screen.dart';
 
 class BottomBar extends StatelessWidget {
   BottomBar({
@@ -16,7 +15,6 @@ class BottomBar extends StatelessWidget {
     MyHomePage(title: 'Hotel Page'),
     const SearchScreen(),
     const ProfileScreen(),
-    const AddHotelScreen(),
   ];
 
   @override

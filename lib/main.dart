@@ -4,6 +4,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:hotel/presentation/home/home_screen.dart';
 import 'package:hotel/presentation/home/widgets/bottom_nav.dart';
 import 'package:hotel/presentation/onboarding/onboarding_screen.dart';
+import 'package:hotel/providers/booking_provider.dart';
 import 'package:hotel/providers/hotel_provider.dart';
 import 'package:hotel/providers/navigation_provider.dart';
 import 'core/theme/theme.dart';
@@ -33,6 +34,7 @@ Future<void> main() async {
           create: (context) => AdminProvider(),
         ),
         ChangeNotifierProvider(create: (context) => HotelProvider()),
+        ChangeNotifierProvider(create: (context) => BookingProvider()),
       ],
       child: const Hotel(),
     ),
