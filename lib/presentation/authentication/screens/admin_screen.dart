@@ -45,7 +45,10 @@ class AdminScreen extends StatelessWidget {
                     .read<AdminProvider>()
                     .signInWithEmailAndPassword(context, email, password);
                 // Check if the user is created successfully
-                Navigator.pushNamed(context, '/addHotels');
+                Navigator.pushNamed(
+                  context,
+                  '/bottomNav',
+                );
               },
               child: const Text('Login'),
             ),

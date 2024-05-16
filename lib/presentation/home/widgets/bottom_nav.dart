@@ -6,17 +6,15 @@ import 'package:hotel/providers/navigation_provider.dart';
 import 'package:provider/provider.dart';
 
 import '../../../providers/hotel_provider.dart';
-import '../add_hotels_screen.dart';
 
 class BottomBar extends StatelessWidget {
   BottomBar({
     super.key,
   });
   final List<Widget> currentTab = [
-    const MyHomePage(title: 'Hotel Page'),
+    MyHomePage(title: 'Hotel Page'),
     const SearchScreen(),
     const ProfileScreen(),
-    const AddHotelScreen(),
   ];
 
   @override
