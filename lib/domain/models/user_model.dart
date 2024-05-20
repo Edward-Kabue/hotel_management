@@ -5,15 +5,14 @@ class UserModel {
   String email;
   String displayName;
   String? photoURL;
- 
+  int phoneNumber;
 
-  UserModel({
-    required this.uid,
-    required this.email,
-    required this.displayName,
-    this.photoURL,
-   
-  });
+  UserModel(
+      {required this.uid,
+      required this.email,
+      required this.displayName,
+      this.photoURL,
+      required this.phoneNumber});
 //serialize data to JSON
   Map<String, dynamic> toJson() {
     return {
@@ -21,7 +20,7 @@ class UserModel {
       'email': email,
       'displayName': displayName,
       'photoURL': photoURL,
-    
+      'phoneNumber': phoneNumber,
     };
   }
 
@@ -32,7 +31,7 @@ class UserModel {
       email: json['email'],
       displayName: json['displayName'],
       photoURL: json['photoURL'],
-  
+      phoneNumber: json['phoneNumber'],
     );
   }
 }
