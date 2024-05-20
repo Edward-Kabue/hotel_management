@@ -17,7 +17,7 @@ class _CreateUserScreenState extends State<SignUpScreen> {
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
   final _displayNameController = TextEditingController();
-
+  final _phoneNumber = TextEditingController();
   @override
   void dispose() {
     _emailController.dispose();
@@ -76,6 +76,23 @@ class _CreateUserScreenState extends State<SignUpScreen> {
                     ),
                     const SizedBox(height: 16),
                     TextFormField(
+                      controller: _phoneNumber,
+                      validator: (value) {
+                        if (value == null || value.isEmpty) {
+                          return 'Please enter your Number';
+                        }
+
+                        return null;
+                      },
+                      decoration: const InputDecoration(
+                        hintText: "number",
+                        labelText: 'Phone Number',
+                        prefixIcon: Icon(Icons.phone,
+                            color: Color(0xff000000), size: 24),
+                      ),
+                    ),
+                    const SizedBox(height: 16),
+                    TextFormField(
                       controller: _passwordController,
                       validator: (value) {
                         if (value == null || value.isEmpty) {
@@ -101,11 +118,12 @@ class _CreateUserScreenState extends State<SignUpScreen> {
                           String password = _passwordController.text.trim();
                           String displayName =
                               _displayNameController.text.trim();
+                          int phoneNumber = int.parse(_phoneNumber.text.trim());
                           // Pass the current context to the AuthProvider
                           await context
                               .read<AuthProvider>()
-                              .createUserWithEmailAndPassword(
-                                  context, email, password, displayName);
+                              .createUserWithEmailAndPassword(context, email,
+                                  password, displayName, phoneNumber);
                           // Check if the user is created successfully
                           if (context.read<AuthProvider>().user != null) {
                             Navigator.pushReplacement(

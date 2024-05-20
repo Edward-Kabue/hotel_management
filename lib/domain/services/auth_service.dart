@@ -11,8 +11,12 @@ class AuthService {
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
 
   // Create user with email and password
-  Future<UserModel?> createUserWithEmailAndPassword(BuildContext context,
-      String email, String password, String displayName) async {
+  Future<UserModel?> createUserWithEmailAndPassword(
+      BuildContext context,
+      String email,
+      String password,
+      String displayName,
+      int phoneNumber) async {
     try {
       UserCredential userCredential =
           await _auth.createUserWithEmailAndPassword(
@@ -25,6 +29,7 @@ class AuthService {
         uid: userCredential.user!.uid,
         email: userCredential.user!.email ?? '',
         displayName: displayName,
+        phoneNumber: phoneNumber,
       );
       // Create a new user document in Firestore
       try {
@@ -42,6 +47,7 @@ class AuthService {
         uid: user.uid,
         email: user.email ?? '',
         displayName: displayName,
+        phoneNumber: phoneNumber,
       );
     } on FirebaseAuthException catch (e) {
       // Handle specific FirebaseAuthException errors
@@ -79,12 +85,14 @@ class AuthService {
       String uid = user?.uid ?? '';
       String userEmail = user?.email ?? '';
       String displayName = user?.displayName ?? '';
+      int phoneNumber = (user?.phoneNumber ?? 0) as int;
 
       // Regular user flow
       return UserModel(
         uid: uid,
         email: userEmail,
         displayName: displayName,
+        phoneNumber: phoneNumber,
       );
     } on FirebaseAuthException catch (e) {
       // Handle specific FirebaseAuthException errors
