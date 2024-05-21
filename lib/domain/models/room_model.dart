@@ -1,6 +1,6 @@
 class Room {
   final String type;
-  final double rate;
+  final num rate;
   final bool isAvailable;
 
   Room({

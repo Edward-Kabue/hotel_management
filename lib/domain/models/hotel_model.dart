@@ -4,7 +4,7 @@ class Hotel {
   final int? id;
   final String? name;
   final String? location;
-  final double? rating;
+  final num? rating;
   final String? imageUrl;
   final List<Room> rooms;
 

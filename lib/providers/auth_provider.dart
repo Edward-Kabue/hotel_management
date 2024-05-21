@@ -4,7 +4,7 @@ import 'package:hotel/domain/models/user_model.dart';
 
 class AuthProvider extends ChangeNotifier {
   final AuthService _authService = AuthService();
-  UserModel? _user;
+  late final UserModel _user;
   String? _errorMessage;
   bool _isLoggedIn = false;
 

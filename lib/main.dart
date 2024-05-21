@@ -17,18 +17,14 @@ import 'presentation/dashboard/add_hotels_screen.dart';
 import 'presentation/dashboard/widgets/bottom_nav.dart';
 import 'presentation/home/profile_screen.dart';
 import 'providers/admin_provider.dart';
-import 'package:mpesa_flutter_plugin/mpesa_flutter_plugin.dart';
-import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await dotenv.load(fileName: ".env");
+
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
-  MpesaFlutterPlugin.setConsumerKey(dotenv.env['MPESA_CONSUMER_KEY'] ?? '');
-  MpesaFlutterPlugin.setConsumerSecret(
-      dotenv.env['MPESA_CONSUMER_SECRET'] ?? '');
+
   runApp(
     MultiProvider(
       providers: [
